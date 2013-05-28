@@ -22,6 +22,7 @@ var color;
 var hex;
 var rotate = function () {
   hue += HUE_STEP;
+  hue %= 360;
   color = tinycolor({h: hue, s: 100, v: 100});
   hex = color.toHex();
   //console.log(color, hex);
