@@ -1,0 +1,36 @@
+<script src="tinycolor.js">// https://github.com/bgrins/TinyColor</script>
+<body style="width: 100%; margin: 0px; height: 100%; background-color: #000" />
+<script>
+// http://stackoverflow.com/a/7934009/477229
+addEventListener("click", function() {
+    var
+          el = document.documentElement
+        , rfs =
+               el.requestFullScreen
+            || el.webkitRequestFullScreen
+            || el.mozRequestFullScreen
+    ;
+    rfs.call(el);
+});
+
+var HUE_STEP = 0.01;
+var DELAY = 10;
+
+var body = document.body;
+var hue = 0;
+var color;
+var hex;
+var rotate = function () {
+  hue += HUE_STEP;
+  color = tinycolor({h: hue, s: 100, v: 100});
+  hex = color.toHex();
+  //console.log(color, hex);
+  body.style.backgroundColor = hex;
+};
+var next = function () {
+  rotate();
+  setTimeout(next, DELAY);
+};
+
+next();
+</script>
